@@ -1,6 +1,6 @@
 " pathogen
-call pathogen#infect()
-call pathogen#helptags()
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 
 set nocompatible
 
