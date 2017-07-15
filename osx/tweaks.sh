@@ -24,3 +24,4 @@ defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # set Safari's home page to 'about:blank'
 defaults write com.apple.Safari HomePage -string "about:blank"
+
