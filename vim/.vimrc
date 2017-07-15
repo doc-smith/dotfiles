@@ -1,32 +1,31 @@
-" pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 set nocompatible
 
-set t_Co=256                            " enable 256-colour mode
+set t_Co=256
 set termencoding=utf-8
 set encoding=utf-8
 set fileencodings=utf-8,cp1251,koi8-r
 
 syntax on               " enable syntax highlighting
-colorscheme smyck
-set background=dark
+colorscheme solarized
+set background=light
 
 filetype plugin indent on
 autocmd BufRead *.sql set filetype=mysql
 
-set number          " show line numbers
+set number
 set laststatus=2
 set noruler
 
 set hidden
 
 set autoindent
-set tabstop=4       " tab spacing
-set softtabstop=4   " unify
+set tabstop=4
+set softtabstop=4
 set shiftwidth=4
-set shiftround      " always indent/outdent to the nearest tabstop
+set shiftround
 set expandtab
 set smarttab
 set nowrap
