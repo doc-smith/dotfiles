@@ -2,6 +2,7 @@
 
 ## XCode and MacPorts
 * Install [XCode from App Store](https://itunes.apple.com/cz/app/xcode/id497799835?mt=12).
+* ```sudo xcodebuild -license```
 * Install [MacPorts](https://www.macports.org).
 
 ## SSHFS
