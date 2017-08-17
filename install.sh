@@ -27,3 +27,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     ./osx/tweaks.sh
 fi
 
+
+# git
+#
+git config --global credential.helper osxkeychain
+git config --global user.name "Dmitry Kuznetsov"
+git config --global user.email dkuznetsov@yandex.ru
+
