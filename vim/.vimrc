@@ -10,7 +10,7 @@ set fileencodings=utf-8,cp1251,koi8-r
 
 syntax on               " enable syntax highlighting
 colorscheme solarized
-set background=light
+set background=dark
 
 filetype plugin indent on
 autocmd BufRead *.sql set filetype=mysql

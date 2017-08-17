@@ -24,6 +24,8 @@ sudo port select --set pip pip27
 sudo port install py27-virtualenv
 sudo port select --set virtualenv virtualenv27
 
+sudo port install py27-readline
+
 ports=(
     vim
     moreutils

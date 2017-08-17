@@ -16,3 +16,14 @@ ln -sfv "$SCRIPT_DIR/shell/bashrc" ~/.bashrc
 ln -sfv "$SCRIPT_DIR/shell/bash_profile" ~/.bash_profile
 ln -sfv "$SCRIPT_DIR/shell/bash_prompt" ~/.bash_prompt
 
+
+# OS X
+#
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "${SCRIPT_DIR}/iterm2"
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+    ./osx/ports.sh
+    ./osx/tweaks.sh
+fi
+
