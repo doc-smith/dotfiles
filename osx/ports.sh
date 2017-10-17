@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -euxo pipefail
 
 
 if ! [ -x "$(command -v port)" ]; then
@@ -9,10 +9,11 @@ if ! [ -x "$(command -v port)" ]; then
 fi
 
 sudo port install bash +completion
-BASH_PATH=`which bash`
+BASH_PATH=$(which bash)
 if ! grep "$BASH_PATH" /etc/shells; then
     echo "$BASH_PATH" | sudo tee -a /etc/shells
 fi
+chsh -s ${BASH_PATH}
 
 sudo port install python27 +readline
 sudo port select --set python python27
