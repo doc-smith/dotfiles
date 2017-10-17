@@ -5,15 +5,22 @@ set -euxo pipefail
 
 if ! [ -x "$(command -v port)" ]; then
     >&2 echo "Error: MacPorts are not installed."
+    >&2 echo "Download and install MacPorts: https://www.macports.org/install.php"
     exit 1
 fi
 
-sudo port install bash +completion
-BASH_PATH=$(which bash)
-if ! grep "$BASH_PATH" /etc/shells; then
-    echo "$BASH_PATH" | sudo tee -a /etc/shells
+MACPORTS_BASH_PATH=/opt/local/bin/bash
+CURRENT_DEFAULT_SHELL=$(dscl . -read "/Users/${USER}" UserShell | awk -F': ' '{print $2}')
+
+if [ "${MACPORTS_BASH_PATH}" == "${CURRENT_DEFAULT_SHELL}" ]; then
+    >&2 echo "${MACPORTS_BASH_PATH} is already the default shell for ${USER}"
+else
+    sudo port install bash +completion
+    if ! grep "${MACPORTS_BASH_PATH}" /etc/shells; then
+        echo "${MACPORTS_BASH_PATH}" | sudo tee -a /etc/shells
+    fi
+    chsh -s "${MACPORTS_BASH_PATH}"
 fi
-chsh -s ${BASH_PATH}
 
 sudo port install python27 +readline
 sudo port select --set python python27
@@ -25,7 +32,7 @@ sudo port select --set pip pip27
 sudo port install py27-virtualenv
 sudo port select --set virtualenv virtualenv27
 
-sudo port install py27-readline
+sudo port install py27-gnureadline
 
 ports=(
     vim
