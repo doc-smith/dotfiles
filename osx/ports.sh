@@ -22,19 +22,27 @@ else
     chsh -s "${MACPORTS_BASH_PATH}"
 fi
 
+
+PYTHON_PORTS=(
+    py27-gnureadline
+    py36-gnureadline
+    py36-pip
+    py36-virtualenv
+    py36-virtualenvwrapper
+)
+
 sudo port install python27 +readline
-sudo port select --set python python27
+sudo port install python36 +readline
+sudo port install "${PYTHON_PORTS[@]}"
+
+sudo port select --set python python36
+sudo port select --set python3 python36
 sudo port select --set python2 python27
+sudo port select --set pip pip36
+sudo port select --set virtualenv virtualenv36
 
-sudo port install py27-pip
-sudo port select --set pip pip27
 
-sudo port install py27-virtualenv
-sudo port select --set virtualenv virtualenv27
-
-sudo port install py27-gnureadline
-
-ports=(
+PORTS=(
     vim
     moreutils
     ffmpeg
@@ -42,5 +50,5 @@ ports=(
     wget
 )
 
-sudo port install "${ports[@]}"
+sudo port install "${PORTS[@]}"
 
