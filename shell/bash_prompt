@@ -4,10 +4,4 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM='xterm-256color'
 fi
 
-function nonzero_return() {
-    RETVAL=$?
-    [ $RETVAL -ne 0 ] && echo "$RETVAL"
-}
-
-export PS1="[\`nonzero_return\`]\u@\h\\$\w "
-
+export PS1="[\$?]\[$(tput sgr0)\]\[\033[38;5;2m\][\t]\[$(tput sgr0)\]\[\033[38;5;15m\]\u@\h:\[$(tput sgr0)\]\[\033[38;5;12m\][\[$(tput sgr0)\]\[\033[38;5;4m\]\w]\\$\[$(tput sgr0)\]"
