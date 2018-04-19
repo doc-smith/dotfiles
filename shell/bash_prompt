@@ -4,4 +4,4 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
     export TERM='xterm-256color'
 fi
 
-export PS1="[\$?]\[$(tput sgr0)\]\[\033[38;5;2m\][\t]\[$(tput sgr0)\]\[\033[38;5;15m\]\u@\h:\[$(tput sgr0)\]\[\033[38;5;12m\][\[$(tput sgr0)\]\[\033[38;5;4m\]\w]\\$\[$(tput sgr0)\]"
+export PS1="[\$?]\[$(tput sgr0)\]\[\033[38;5;2m\][\t]\[$(tput sgr0)\]\[\033[38;5;15m\]\u@\h:\[$(tput sgr0)\]\[\033[38;5;12m\][\[$(tput sgr0)\]\[\033[38;5;4m\]\w]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
