@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # Finder
 #
 
@@ -51,4 +53,3 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Disable irritating notification requests in Safari
 defaults write ~/Library/Preferences/com.apple.Safari CanPromptForPushNotifications -boolean false
-

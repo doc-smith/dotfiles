@@ -1,54 +1,58 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
+set -euo pipefail
+
+
+stderr() {
+    echo "$@" 1>&2; 
+}
+
+
+die() {
+    stderr "$@"
+    exit 1
+}
 
 
 if ! [ -x "$(command -v port)" ]; then
-    >&2 echo "Error: MacPorts are not installed."
-    >&2 echo "Download and install MacPorts: https://www.macports.org/install.php"
+    die "Download and install MacPorts: https://www.macports.org/install.php"
     exit 1
 fi
 
-MACPORTS_BASH_PATH=/opt/local/bin/bash
-CURRENT_DEFAULT_SHELL=$(dscl . -read "/Users/${USER}" UserShell | awk -F': ' '{print $2}')
 
-if [ "${MACPORTS_BASH_PATH}" == "${CURRENT_DEFAULT_SHELL}" ]; then
-    >&2 echo "${MACPORTS_BASH_PATH} is already the default shell for ${USER}"
-else
-    sudo port install bash +completion
-    if ! grep "${MACPORTS_BASH_PATH}" /etc/shells; then
-        echo "${MACPORTS_BASH_PATH}" | sudo tee -a /etc/shells
+CURRENT_SHELL=$(dscl . -read "/Users/${USER}" UserShell | awk -F': ' '{print $2}')
+ZSH_PATH=/opt/local/bin/zsh
+if [ "${CURRENT_SHELL}" != "${ZSH_PATH}" ]; then
+    ZSH_PORTS=(
+        zsh
+        zsh-completions
+    )
+    sudo port install "${ZSH_PORTS[@]}"
+    if ! grep "${ZSH_PATH}" /etc/shells; then
+        echo "${ZSH_PATH}" | sudo tee -a /etc/shells
     fi
-    chsh -s "${MACPORTS_BASH_PATH}"
+    sudo chsh -u ${USER} -s "${ZSH_PATH}"
 fi
 
 
-PYTHON_PORTS=(
-    py27-gnureadline
-    py36-gnureadline
-    py36-pip
-    py36-virtualenv
-    py36-virtualenvwrapper
-)
-
-sudo port install python27 +readline
-sudo port install python36 +readline
-sudo port install "${PYTHON_PORTS[@]}"
-
-sudo port select --set python python36
-sudo port select --set python3 python36
-sudo port select --set python2 python27
-sudo port select --set pip pip36
-sudo port select --set virtualenv virtualenv36
+if [ ! -d "${NVM_DIR}" ]; then
+    export NVM_DIR="$HOME/.nvm" && (
+    git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+    cd "$NVM_DIR"
+    git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+    ) && \. "$NVM_DIR/nvm.sh"
+fi
 
 
-PORTS=(
-    vim
-    moreutils
-    ffmpeg
-    source-highlight
-    wget
-)
+if ! [ -x "$(command -v rvm)" ]; then
+    sudo port install gnupg2
+    gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    curl -sSL https://get.rvm.io | bash -s stable --ruby
+fi
 
-sudo port install "${PORTS[@]}"
 
+NERD_FONTS_INSTALL_PATH="${HOME}/work/src/nerd-fonts"
+if [ ! -d "${NERD_FONTS_INSTALL_PATH}" ]; then
+    git clone https://github.com/ryanoasis/nerd-fonts "${NERD_FONTS_INSTALL_PATH}"
+    "${NERD_FONTS_INSTALL_PATH}/install.sh"
+fi
