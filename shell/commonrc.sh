@@ -1,4 +1,4 @@
-export PATH="${PATH}:${HOME}/miniconda3/bin"
+export PATH="${PATH}:${HOME}/miniconda/bin"
 export PATH="${PATH}:${HOME}/.rvm/bin"
 export PATH="/opt/local/bin:/opt/local/sbin:${PATH}"
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
