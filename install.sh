@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 source "${SCRIPT_DIR}/osx/common.sh"
 
-if [ "$OSTYPE" == "darwin"* ]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
     "${SCRIPT_DIR}/osx/install.sh"
     "${SCRIPT_DIR}/osx/tweak-macos.sh"
 else
