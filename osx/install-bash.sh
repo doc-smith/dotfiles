@@ -33,7 +33,7 @@ MACPORTS_VARIANTS=/opt/local/etc/macports/variants.conf
 COMPLETION_OPTION=+bash_completion
 stderr "Checking if +bash_completion is in ${MACPORTS_VARIANTS}"
 if ! grep -qxF "${COMPLETION_OPTION}" "${MACPORTS_VARIANTS}"; then
-    echo "${COMPLETION_OPTION}" >> "${MACPORTS_VARIANTS}"
+    echo "${COMPLETION_OPTION}" | sudo tee -a "${MACPORTS_VARIANTS}"
 fi
 
 stderr "Installing Bash from MacPorts: done"
