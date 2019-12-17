@@ -34,9 +34,13 @@ fi
 stderr "Installing rvm: done"
 
 
+stderr "Installing other useful ports..."
 USEFUL_PORTS=(
     unzip
     jq
     tldr-cpp-client
     mit-scheme
+    htop
 )
+sudo port install "${USEFUL_PORTS[@]}"
+stderr "Installing other useful ports: done"
