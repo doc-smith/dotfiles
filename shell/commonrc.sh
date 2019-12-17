@@ -1,4 +1,9 @@
-export PATH="${PATH}:${HOME}/miniconda/bin"
+MINICONDA_PATH="${HOME}/miniconda"
+if [ -e "${MINICONDA_PATH}" ]; then
+    export PATH="${PATH}:${MINICONDA_PATH}/bin"
+    eval "$(${MINICONDA_PATH}/bin/conda shell.bash hook)"
+fi
+
 export PATH="${PATH}:${HOME}/.rvm/bin"
 export PATH="/opt/local/bin:/opt/local/sbin:${PATH}"
 export PATH="${PATH}:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
