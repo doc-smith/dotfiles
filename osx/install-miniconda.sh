@@ -27,3 +27,9 @@ else
 fi
 
 stderr "Insalling Miniconda: done"
+
+stderr "Configuring Miniconda..."
+
+"${MINICONDA_PATH}/bin/conda" config --set auto_activate_base false
+
+stderr "Configuring Miniconda: done"
