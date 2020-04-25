@@ -5,11 +5,7 @@ set -euo pipefail
 ENVRIONMENT_NAME=science
 PYTHON_VERSION=3.8
 
-DEFAULT_PACKAGES=(
-    numpy
-    matplotlib
-    notebook
-)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 
 stderr() {
@@ -25,11 +21,22 @@ die() {
 
 if conda info -e | grep "${ENVRIONMENT_NAME}"; then
     die "the environment ${ENVRIONMENT_NAME} already exists"
-else
-    conda create \
-        --yes \
-        --name "${ENVRIONMENT_NAME}" \
-        python="${PYTHON_VERSION}" \
-        "${DEFAULT_PACKAGES[@]}"
 fi
+
+ENVIRONMENT_FILE="$(mktemp "${TMPDIR}/$(uuidgen).yml")"
+trap 'rm -f "${ENVIRONMENT_FILE}"' EXIT
+
+cat << EOF > "${ENVIRONMENT_FILE}"
+name: ${ENVRIONMENT_NAME}
+channels:
+  - conda-forge
+dependencies:
+- python=${PYTHON_VERSION}
+- pandas
+- scikit-learn
+- matplotlib
+- notebook
+EOF
+
+conda env create -f "${ENVIRONMENT_FILE}"
 
