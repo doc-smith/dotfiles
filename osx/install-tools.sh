@@ -41,6 +41,7 @@ USEFUL_PORTS=(
     tldr-cpp-client
     mit-scheme
     htop
+    gradle
 )
 sudo port install "${USEFUL_PORTS[@]}"
 stderr "Installing other useful ports: done"
