@@ -13,3 +13,6 @@ Install newer Vim:
 ```
 sudo port install vim # +huge by default
 ```
+
+## JetBrains
+* Install [JetBrains Toolbox App](https://www.jetbrains.com/toolbox-app/)
