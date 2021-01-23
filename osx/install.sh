@@ -13,5 +13,5 @@ fi
 
 
 "${SCRIPT_DIR}/install-bash.sh"
-"${SCRIPT_DIR}/install-miniconda.sh"
 "${SCRIPT_DIR}/install-tools.sh"
+"${SCRIPT_DIR}/install-miniconda.sh"
