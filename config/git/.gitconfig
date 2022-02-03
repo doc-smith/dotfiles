@@ -1,0 +1,18 @@
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = Dmitry
+	email = dkuznetsov@yandex.ru
+[credential]
+	helper = osxkeychain
+[core]
+	editor = vim
+[color]
+	ui = auto
+[init]
+	defaultBranch = main
+[advice]
+	statusHints = false

@@ -1,18 +1,37 @@
 # Prerequisites
 
-## XCode and MacPorts
-* Install [XCode from App Store](https://itunes.apple.com/cz/app/xcode/id497799835?mt=12).
-* ```sudo xcodebuild -license```
-* Install [MacPorts](https://www.macports.org).
+## macOS
 
-## SSHFS
-* Install [FUSE and SSHFS](https://osxfuse.github.io) and reboot.
+### Homebrew
 
-## vim
-Install newer Vim:
-```
-sudo port install vim # +huge by default
-```
+Install [Homebrew](https://docs.brew.sh/Installation):
+```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"```
 
-## JetBrains
-* Install [JetBrains Toolbox App](https://www.jetbrains.com/toolbox-app/)
+### Terminal.app
+
+* [Solarized color theme](https://github.com/tomislav/osx-terminal.app-colors-solarized)
+* Profile: `macos/terminal/Solarized Dark.terminal`
+
+### Vim
+
+Install [vim-plug](https://github.com/junegunn/vim-plug):
+```curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim```
+
+Also, when you are done with the rest of the steps, open Vim and enter
+`:PlugInstall` to install all Vim plugins.
+
+
+### Essential stuff
+
+`macos/packages.sh`
+
+`macos/tweaks.sh`
+
+
+### Config files
+
+`install-config.sh`
+
+### Keys
+
