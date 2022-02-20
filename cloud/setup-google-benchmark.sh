@@ -24,6 +24,10 @@ trap cleanup EXIT
 git clone https://github.com/google/benchmark.git "${WORK_DIR}"
 cd "${WORK_DIR}"
 cmake -E make_directory "build"
-cmake -E chdir "build" cmake -DBENCHMARK_DOWNLOAD_DEPENDENCIES=on -DCMAKE_BUILD_TYPE=Release ../
+CXX=clang++ cmake -E chdir "build" \
+    cmake -DBENCHMARK_DOWNLOAD_DEPENDENCIES=on \
+          -DBENCHMARK_USE_LIBCXX=on \
+          -DCMAKE_BUILD_TYPE=Release \
+          ../
 cmake --build "build" --config Release
 sudo cmake --build "build" --config Release --target install
