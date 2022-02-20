@@ -32,6 +32,7 @@ PACKAGES=(
     cmake
     gdb
     git
+    google-perftools
     htop
     libc++-dev
     libc++abi-dev
