@@ -27,9 +27,9 @@ STUFF=(
   llvm
   tldr
   tmux
+  gibo
 )
 
 brew install "${STUFF[@]}"
 
 stderr "Installing useful stuff: done"
-
