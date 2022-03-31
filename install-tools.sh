@@ -17,7 +17,7 @@ die() {
 
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
-    die "Sorry, your OS ${OSTYPE} is not supported"
+    die "Sorry, your OS ${OSTYPE} is not macOS"
 fi
 
 MACHINE_TOOLS_DIR="${HOME}/tools"
@@ -43,4 +43,3 @@ for tset in "${TOOL_SETS[@]}"; do
 done
 
 stderr "Setting symlinks: done"
-
