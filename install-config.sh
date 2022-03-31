@@ -17,7 +17,7 @@ die() {
 
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
-    die "Sorry, your OS ${OSTYPE} is not supported"
+    die "Sorry, your OS ${OSTYPE} is not macOS"
 fi
 
 MACHINE_CONFIG_DIR="${HOME}/.config"
@@ -53,4 +53,3 @@ ln -sfv "${MACHINE_CONFIG_DIR}/git/.gitconfig" "${HOME}"
 ln -sfv "${MACHINE_CONFIG_DIR}/zsh/.zshenv" "${HOME}"
 
 stderr "Setting symlinks: done"
-
