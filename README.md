@@ -2,36 +2,31 @@
 
 ## macOS
 
-### Homebrew
+### Installation
 
-Install [Homebrew](https://docs.brew.sh/Installation):
-```/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"```
+* [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)
+* Xcode command line tools
+* [Homebrew](https://docs.brew.sh/Installation)
 
-### Terminal.app
+``` bash
+$ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
 
-* [Solarized color theme](https://github.com/tomislav/osx-terminal.app-colors-solarized)
-* Profile: `macos/terminal/Solarized Dark.terminal`
+Now clone the repository and run [install-macos.sh](install-macos.sh):
+``` bash
+$ mkdir ~/GitHub
+$ git clone https://github.com/doc-smith/dotfiles.git ~/GitHub/dotfiles
+$ ~/GitHub/dotfiles/install-macos.sh
+```
 
-### Vim
-
-Install [vim-plug](https://github.com/junegunn/vim-plug):
-```curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim```
-
-Also, when you are done with the rest of the steps, open Vim and enter
-`:PlugInstall` to install all Vim plugins.
-
-
-### Essential stuff
-
-`macos/packages.sh`
-
-`macos/tweaks.sh`
+Install additional programs:
+``` bash
+$ ~/GitHub/dotfiles/macos/install-stuff.sh
+```
 
 
-### Config files
+### Terminal setup
 
-`install-config.sh`
+### Visual Studio Code
 
-### Keys
-
+### Generate keys
