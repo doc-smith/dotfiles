@@ -2,6 +2,8 @@
 
 ## macOS
 
+### Generate keys
+
 ### Installation
 
 * [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)
@@ -15,7 +17,7 @@ $ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/maste
 Now clone the repository and run [install-macos.sh](install-macos.sh):
 ``` bash
 $ mkdir ~/GitHub
-$ git clone https://github.com/doc-smith/dotfiles.git ~/GitHub/dotfiles
+$ git clone git@github.com:doc-smith/dotfiles.git ~/GitHub/dotfiles
 $ ~/GitHub/dotfiles/install-macos.sh
 ```
 
@@ -24,9 +26,17 @@ Install additional programs:
 $ ~/GitHub/dotfiles/macos/install-stuff.sh
 ```
 
+And apply sensible defaults:
+``` bash
+$ ~/GitHub/dotfiles/macos/tweak.sh
+```
+
 
 ### Terminal setup
 
+Import a Terminal profile from [macos/terminal](macos/terminal) and make it default.
+I was too lazy to properly automate this step.
+
 ### Visual Studio Code
 
-### Generate keys
+Turn on settings sync (Code -> Preferences -> Turn on Settings Sync...) and sign in with the GitHub account.
