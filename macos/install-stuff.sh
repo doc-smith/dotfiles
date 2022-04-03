@@ -7,6 +7,8 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}/common.sh"
 
 
+require_macos
+
 if ! [ -x "$(command -v brew)" ]; then
     die "Install Homebrew first: http://brew.sh"
 fi
@@ -31,8 +33,9 @@ for formula in "${STUFF[@]}"; do
     fi
 done
 
-
-stderr "Installing Visual Studio Code..."
-brew install --cask visual-studio-code
+if ! brew ls --versions --cask visual-studio-code > /dev/null; then
+    stderr "Installing Visual Studio Code..."
+    brew install --cask visual-studio-code > /dev/null
+fi
 
 brew cleanup

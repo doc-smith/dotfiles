@@ -8,9 +8,8 @@ die() {
 }
 
 require_macos() {
-
+    if [[ "$OSTYPE" != "darwin"* ]]; then
+        die "Sorry, your OS ${OSTYPE} is not macOS"
+    fi
 }
 
-require_sudo() {
-
-}
