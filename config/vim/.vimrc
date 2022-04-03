@@ -1,11 +1,3 @@
-call plug#begin('~/.vim/plugged')
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'preservim/nerdtree'
-    Plug 'altercation/vim-colors-solarized'
-call plug#end()
-
 set nocompatible
 
 filetype plugin indent on
@@ -29,9 +21,6 @@ else
 endif
 
 syntax enable
-colorscheme solarized
-set background=dark
-let g:solarized_termcolors=256
 
 set hidden
 
@@ -72,21 +61,3 @@ map <c-h> <c-w>h
 set splitbelow
 set splitright
 
-" NERDTree
-" start NERDTree when Vim is started without file arguments
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-" clangd for vim-lsp
-if executable('clangd')
-    augroup lsp_clangd
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'clangd',
-                    \ 'cmd': {server_info->['clangd']},
-                    \ 'whitelist': ['c', 'cpp'],
-                    \ })
-        autocmd FileType c setlocal omnifunc=lsp#complete
-        autocmd FileType cpp setlocal omnifunc=lsp#complete
-    augroup end
-endif
