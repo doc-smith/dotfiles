@@ -6,10 +6,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 
 source "${SCRIPT_DIR}/macos/common.sh"
 
-if [[ "$OSTYPE" != "darwin"* ]]; then
-    die "Sorry, your OS ${OSTYPE} is not macOS"
-fi
-
+require_macos
 
 MACHINE_CONFIG_DIR="${HOME}/.config"
 
