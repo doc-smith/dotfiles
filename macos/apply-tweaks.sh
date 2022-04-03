@@ -2,6 +2,13 @@
 
 set -euo pipefail
 
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
+source "${SCRIPT_DIR}/common.sh"
+
+
+require_macos
+
 # Finder
 
 # Show path bar
@@ -17,7 +24,12 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
 # Always use "View -> as List"
-defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Dock
+
+# Minimize windows into their application’s icon
+defaults write com.apple.dock minimize-to-application -bool true
 
 
 # Safari
