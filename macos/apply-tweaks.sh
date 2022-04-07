@@ -62,3 +62,10 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# default screenshot location
+SCREENSHOT_LOCATION="${HOME}/Pictures/Screenshots"
+mkdir -p "${SCREENSHOT_LOCATION}"
+defaults write com.apple.screencapture location "${SCREENSHOT_LOCATION}"
+killall SystemUIServer
+
