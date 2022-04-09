@@ -16,3 +16,5 @@
 	defaultBranch = main
 [advice]
 	statusHints = false
+[pull]
+	rebase = true
