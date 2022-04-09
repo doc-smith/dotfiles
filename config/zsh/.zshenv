@@ -9,4 +9,5 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 export PATH="${HOME}/tools/tmux:${PATH}"
+export PATH="${HOME}/tools/aws-cli:${PATH}"
 
