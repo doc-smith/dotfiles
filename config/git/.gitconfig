@@ -5,7 +5,7 @@
 	smudge = git-lfs smudge -- %f
 [user]
 	name = Dmitry
-	email = dkuznetsov@yandex.ru
+	email = dimitrij.kuznetsov@gmail.com
 [credential]
 	helper = osxkeychain
 [core]
