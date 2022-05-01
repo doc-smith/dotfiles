@@ -43,8 +43,6 @@ Turn on settings sync (Code -> Preferences -> Turn on Settings Sync...) and sign
 
 ## Useful tools
 
-### Exa
-
 * [exa](https://github.com/ogham/exa) is a modern replacement for `ls`
 * [bat](https://github.com/sharkdp/bat)
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
