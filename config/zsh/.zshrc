@@ -22,12 +22,6 @@ fi
 # aliases
 source "${ZDOTDIR}/aliases"
 
-
-# vim mode
-bindkey -v
-export KEYTIMEOUT=1
-
-
 # history
 setopt EXTENDED_HISTORY
 
