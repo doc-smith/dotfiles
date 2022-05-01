@@ -1,5 +1,6 @@
 alias ls='ls -G'
 alias ll='ls -lahGF'
+alias exa='exa --long --header --git'
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'

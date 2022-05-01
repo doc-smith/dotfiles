@@ -24,6 +24,9 @@ STUFF=(
   tldr
   tmux
   gibo
+  exa
+  bat
+  ripgrep
 )
 
 for formula in "${STUFF[@]}"; do

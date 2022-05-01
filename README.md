@@ -40,3 +40,11 @@ I was too lazy to properly automate this step.
 ### Visual Studio Code
 
 Turn on settings sync (Code -> Preferences -> Turn on Settings Sync...) and sign in with the GitHub account.
+
+## Useful tools
+
+### Exa
+
+* [exa](https://github.com/ogham/exa) is a modern replacement for `ls`
+* [bat](https://github.com/sharkdp/bat)
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
