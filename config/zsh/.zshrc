@@ -1,6 +1,8 @@
 # PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# disable vi mode
+bindkey -e
 
 # completion system
 autoload -U compinit; compinit
