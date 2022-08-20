@@ -10,6 +10,7 @@ export VISUAL="vim"
 
 export PATH="${HOME}/tools/tmux:${PATH}"
 export PATH="${HOME}/tools/aws-cli:${PATH}"
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:${PATH}"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 . "$HOME/.cargo/env"
