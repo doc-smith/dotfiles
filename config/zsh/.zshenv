@@ -12,3 +12,7 @@ export PATH="${HOME}/tools/tmux:${PATH}"
 export PATH="${HOME}/tools/aws-cli:${PATH}"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+. "$HOME/.cargo/env"
+
+[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
+[ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
