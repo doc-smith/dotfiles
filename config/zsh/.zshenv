@@ -15,3 +15,8 @@ export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:${
 
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
 [ -f "${HOME}/.cargo/env" ] && source "${HOME}/.cargo/env"
+
+# Terminal colors
+# ls solarized
+export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
