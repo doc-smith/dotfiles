@@ -22,7 +22,8 @@ FORMULAE=(
     llvm        # clang and friends
     neovim      # better Vim
     python3
-    tldr        # man tldr
+    the_silver_searcher # better ack
+    tldr                # man tldr
     tmux
 )
 
