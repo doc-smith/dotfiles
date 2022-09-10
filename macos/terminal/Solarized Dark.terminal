@@ -1197,10 +1197,14 @@
 	bG9yohYYWE5TT2JqZWN0CBEaJCkyN0lMUVNXXWRqd36qrK6zvsfP0gAAAAAAAAEBAAAA
 	AAAAABkAAAAAAAAAAAAAAAAAAADb
 	</data>
+	<key>Bell</key>
+	<true/>
 	<key>BlinkText</key>
 	<false/>
 	<key>CommandString</key>
 	<string></string>
+	<key>CursorBlink</key>
+	<true/>
 	<key>CursorColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
@@ -1281,10 +1285,10 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMS
 	AAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGkCwwVFlUkbnVsbNQNDg8QERIT
-	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNAKAAAAAAAABAQgAKAA15TRk1v
-	bm8tUmVndWxhctIXGBkaWiRjbGFzc25hbWVYJGNsYXNzZXNWTlNGb250ohkbWE5TT2Jq
-	ZWN0CBEaJCkyN0lMUVNYXmdud36FjpCSlKOos7zDxgAAAAAAAAEBAAAAAAAAABwAAAAA
-	AAAAAAAAAAAAAADP
+	FFZOU1NpemVYTlNmRmxhZ3NWTlNOYW1lViRjbGFzcyNALAAAAAAAABAQgAKAA1ZNb25h
+	Y2/SFxgZGlokY2xhc3NuYW1lWCRjbGFzc2VzVk5TRm9udKIZG1hOU09iamVjdAgRGiQp
+	MjdJTFFTWF5nbnd+hY6QkpSboKu0u74AAAAAAAABAQAAAAAAAAAcAAAAAAAAAAAAAAAA
+	AAAAxw==
 	</data>
 	<key>FontAntialias</key>
 	<true/>
@@ -1369,16 +1373,34 @@
 	DZwNoQ2pAAAAAAAAAgEAAAAAAAAAJgAAAAAAAAAAAAAAAAAADaw=
 	</data>
 	<key>ShouldLimitScrollback</key>
-	<integer>1</integer>
+	<integer>0</integer>
+	<key>ShowActiveProcessArgumentsInTabTitle</key>
+	<true/>
+	<key>ShowActiveProcessArgumentsInTitle</key>
+	<false/>
+	<key>ShowActiveProcessInTabTitle</key>
+	<true/>
 	<key>ShowActiveProcessInTitle</key>
 	<false/>
+	<key>ShowActivityIndicatorInTab</key>
+	<true/>
 	<key>ShowCommandKeyInTitle</key>
+	<false/>
+	<key>ShowComponentsWhenTabHasCustomTitle</key>
 	<false/>
 	<key>ShowDimensionsInTitle</key>
 	<false/>
+	<key>ShowRepresentedURLInTabTitle</key>
+	<true/>
 	<key>ShowRepresentedURLInTitle</key>
 	<false/>
+	<key>ShowRepresentedURLPathInTabTitle</key>
+	<true/>
+	<key>ShowRepresentedURLPathInTitle</key>
+	<false/>
 	<key>ShowShellCommandInTitle</key>
+	<false/>
+	<key>ShowTTYNameInTabTitle</key>
 	<false/>
 	<key>TerminalType</key>
 	<string>xterm-256color</string>
