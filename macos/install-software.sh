@@ -49,10 +49,13 @@ stderr() {
     echo "$@" 1>&2;
 }
 
-
 die() {
     stderr "$@"
     exit 1
+}
+
+quietly() {
+    "$@" > /dev/null
 }
 
 require_macos() {
@@ -71,10 +74,6 @@ require_homebrew() {
     if ! quietly command -v brew; then
         die 'You need to install Homebrew first (https://brew.sh)'
     fi
-}
-
-quietly() {
-    "$@" > /dev/null
 }
 
 
