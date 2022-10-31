@@ -13,30 +13,32 @@ set -euo pipefail
 
 
 FORMULAE=(
-    bash        # macOS has Zsh now, let's install a newer bash for scripting
+    bash
+    bat
     cmake
-    gh          # GitHub CLI tools
+    exa
+    fish
+    gh
     htop
-    httpie      # better HTTP client
+    httpie
     ipython
-    llvm        # clang and friends
-    neovim      # better Vim
+    llvm
+    mosh
     python3
-    the_silver_searcher # better ack
-    tldr                # man tldr
+    ripgrep
+    tldr
     tmux
 )
 
 CASKS=(
     github
-    spotify
     visual-studio-code
     zoom
 )
 
 EXTRA_HOME_CASKS=(
     discord
-    messenger # Facebook messenger
+    messenger
     signal
     telegram
     vlc
@@ -53,10 +55,15 @@ die() {
     exit 1
 }
 
-
 require_macos() {
     if [[ "$OSTYPE" != "darwin"* ]]; then
         die "Sorry, your OS ${OSTYPE} is not macOS"
+    fi
+}
+
+require_sudo() {
+    if ! sudo -n true; then
+        die "you need sudo to run this script"
     fi
 }
 
@@ -67,6 +74,7 @@ quietly() {
 
 main() {
     require_macos
+    require_sudo
 
     local home_setup=false
     local update_homebrew=true
@@ -92,7 +100,6 @@ main() {
     if [[ "${update_homebrew}" == true ]]; then
         stderr 'Updating Homebrew...'
         quietly brew update
-        stderr 'Updating Homebrew: done'
     fi
 
     stderr 'Getting your formulae ready...'
@@ -104,22 +111,32 @@ main() {
     done
 
     stderr 'Getting your casks ready...'
-    local casks=("${CASKS[@]}")
+    local casks_to_install=("${CASKS[@]}")
     if [[ "${home_setup}" == true ]]; then
-        casks+=("${EXTRA_HOME_CASKS[@]}")
+        casksto_install+=("${EXTRA_HOME_CASKS[@]}")
     fi
 
-    for cask in "${casks[@]}"; do
+    for cask in "${casks_to_install[@]}"; do
         if ! brew ls --cask --versions "${cask}" > /dev/null; then
             stderr "${cask} is not installed, installing..."
             quietly brew install --cask "${cask}"
         fi
     done
 
-    # https://docs.brew.sh/Shell-Completion
     quietly brew completions link
 
-    stderr "All done"
+    if quietly command -v fish &> /dev/null; then
+        stderr 'Setting the login shell to fish...'
+        local fish_path=$(which fish)
+
+        if ! quietly grep "${fish_path}" /etc/shells; then
+            echo "${fish_path}" | sudo tee -a /etc/shells > /dev/null
+        fi
+
+        chsh -s "${fish_path}"
+    fi
+
+    stderr 'All done'
 }
 
 
