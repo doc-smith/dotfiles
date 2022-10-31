@@ -67,6 +67,12 @@ require_sudo() {
     fi
 }
 
+require_homebrew() {
+    if ! quietly command -v brew; then
+        die "you need to install Homebrew first (https://brew.sh)"
+    fi
+}
+
 quietly() {
     "$@" > /dev/null
 }
@@ -75,6 +81,7 @@ quietly() {
 main() {
     require_macos
     require_sudo
+    require_homebrew
 
     local home_setup=false
     local update_homebrew=true
