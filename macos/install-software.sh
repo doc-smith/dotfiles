@@ -63,13 +63,13 @@ require_macos() {
 
 require_sudo() {
     if ! sudo -n true; then
-        die "you need sudo to run this script"
+        die 'You need sudo to run this script'
     fi
 }
 
 require_homebrew() {
     if ! quietly command -v brew; then
-        die "you need to install Homebrew first (https://brew.sh)"
+        die 'You need to install Homebrew first (https://brew.sh)'
     fi
 }
 
