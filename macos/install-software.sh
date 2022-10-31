@@ -97,7 +97,7 @@ main() {
     done
 
 
-    if [[ "${update_homebrew}" == true ]]; then
+    if [ "${update_homebrew}" == true ]; then
         stderr 'Updating Homebrew...'
         quietly brew update
     fi
@@ -112,7 +112,7 @@ main() {
 
     stderr 'Getting your casks ready...'
     local casks_to_install=("${CASKS[@]}")
-    if [[ "${home_setup}" == true ]]; then
+    if [ "${home_setup}" == true ]; then
         casksto_install+=("${EXTRA_HOME_CASKS[@]}")
     fi
 
