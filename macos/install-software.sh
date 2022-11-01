@@ -64,10 +64,14 @@ require_macos() {
     fi
 }
 
-require_sudo() {
-    if ! sudo -n true; then
+ask_sudo() {
+    if ! sudo -v; then
         die 'You need sudo to run this script'
     fi
+}
+
+revoke_sudo() {
+    sudo -k
 }
 
 require_homebrew() {
@@ -78,8 +82,8 @@ require_homebrew() {
 
 
 main() {
+    ask_sudo
     require_macos
-    require_sudo
     require_homebrew
 
     local home_setup=false
@@ -142,7 +146,16 @@ main() {
         sudo chsh -s "${fish_path}" "$(whoami)"
     fi
 
+    local fisher_path="${HOME}/.config/fish/functions/fisher.fish"
+    if [ ! -f "${fisher_path}" ]; then
+        quietly curl \
+            -sLo "${fisher_path}" \
+            --create-dirs https://git.io/fisher
+    fi
+
     stderr 'All done'
+
+    revoke_sudo
 }
 
 
