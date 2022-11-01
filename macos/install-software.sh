@@ -28,6 +28,7 @@ FORMULAE=(
     ripgrep
     tldr
     tmux
+    vivid
 )
 
 CASKS=(
