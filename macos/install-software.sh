@@ -139,7 +139,7 @@ main() {
             echo "${fish_path}" | sudo tee -a /etc/shells > /dev/null
         fi
 
-        chsh -s "${fish_path}"
+        sudo chsh -s "${fish_path}" "$(whoami)"
     fi
 
     stderr 'All done'
