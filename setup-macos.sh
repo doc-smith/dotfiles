@@ -11,6 +11,9 @@
 
 set -euo pipefail
 
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+source "${SCRIPT_DIR}/common.sh"
+
 
 FORMULAE=(
     bash
@@ -28,11 +31,9 @@ FORMULAE=(
     ripgrep
     tldr
     tmux
-    vivid
 )
 
 CASKS=(
-    github
     visual-studio-code
     zoom
 )
@@ -41,45 +42,10 @@ EXTRA_HOME_CASKS=(
     discord
     messenger
     signal
+    steam
     telegram
     vlc
 )
-
-
-stderr() {
-    echo "$@" 1>&2;
-}
-
-die() {
-    stderr "$@"
-    exit 1
-}
-
-quietly() {
-    "$@" > /dev/null
-}
-
-require_macos() {
-    if [[ "$OSTYPE" != "darwin"* ]]; then
-        die "Sorry, your OS ${OSTYPE} is not macOS"
-    fi
-}
-
-ask_sudo() {
-    if ! sudo -v; then
-        die 'You need sudo to run this script'
-    fi
-}
-
-revoke_sudo() {
-    sudo -k
-}
-
-require_homebrew() {
-    if ! quietly command -v brew; then
-        die 'You need to install Homebrew first (https://brew.sh)'
-    fi
-}
 
 
 main() {
@@ -124,7 +90,7 @@ main() {
     stderr 'Getting your casks ready...'
     local casks_to_install=("${CASKS[@]}")
     if [ "${home_setup}" == true ]; then
-        casksto_install+=("${EXTRA_HOME_CASKS[@]}")
+        casks_to_install+=("${EXTRA_HOME_CASKS[@]}")
     fi
 
     for cask in "${casks_to_install[@]}"; do
@@ -138,20 +104,14 @@ main() {
 
     if quietly command -v fish &> /dev/null; then
         stderr 'Setting the login shell to fish...'
-        local fish_path=$(which fish)
+        local fish_path
+        fish_path=$(which fish)
 
         if ! quietly grep "${fish_path}" /etc/shells; then
             echo "${fish_path}" | sudo tee -a /etc/shells > /dev/null
         fi
 
         sudo chsh -s "${fish_path}" "$(whoami)"
-    fi
-
-    local fisher_path="${HOME}/.config/fish/functions/fisher.fish"
-    if [ ! -f "${fisher_path}" ]; then
-        quietly curl \
-            -sLo "${fisher_path}" \
-            --create-dirs https://git.io/fisher
     fi
 
     stderr 'All done'
