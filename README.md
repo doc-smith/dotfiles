@@ -14,7 +14,8 @@ The next step is to install [Go](https://go.dev/dl/) and [rustup](https://rustup
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-That's pretty much it, the rest is automated with `setup-macos.sh`. Clone the repository and run [setup-macos.sh](setup-macos.sh):
+Install [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) and [JetBrains Mono font](https://www.jetbrains.com/lp/mono/) to use with Visual Studio Code. That's pretty much it, the rest is automated with `setup-macos.sh`. Clone the repository and run [setup-macos.sh](setup-macos.sh):
+
 ``` bash
 $ mkdir ~/GitHub
 $ git clone git@github.com:doc-smith/dotfiles.git ~/GitHub/dotfiles

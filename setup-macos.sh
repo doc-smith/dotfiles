@@ -26,25 +26,26 @@ FORMULAE=(
     httpie
     ipython
     llvm
-    mosh
     python3
     ripgrep
+    shellcheck
     tldr
     tmux
 )
 
 CASKS=(
+    spotify
     visual-studio-code
+    wezterm
     zoom
 )
 
+# Applications I don't want to install on a company computer
 EXTRA_HOME_CASKS=(
     discord
-    messenger
     signal
     steam
     telegram
-    vlc
 )
 
 
