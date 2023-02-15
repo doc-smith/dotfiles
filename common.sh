@@ -12,8 +12,8 @@ quietly() {
 }
 
 require_macos() {
-    if [[ "$OSTYPE" != "darwin"* ]]; then
-        die "Sorry, your OS ${OSTYPE} is not macOS"
+    if [ "$(uname)" != "Darwin" ]; then
+        die "Sorry, your OS is not macOS"
     fi
 }
 
@@ -31,4 +31,20 @@ ask_sudo() {
 
 revoke_sudo() {
     sudo -k
+}
+
+make_fish_login_shell() {
+    if ! quietly command -v fish &> /dev/null; then
+        die 'Fish is not installed'
+    fi
+
+    stderr 'Setting the login shell to fish...'
+    local fish_path
+    fish_path=$(which fish)
+
+    if ! quietly grep "${fish_path}" /etc/shells; then
+        echo "${fish_path}" | sudo tee -a /etc/shells > /dev/null
+    fi
+
+    sudo chsh -s "${fish_path}" "$(whoami)"
 }

@@ -102,18 +102,7 @@ main() {
     done
 
     quietly brew completions link
-
-    if quietly command -v fish &> /dev/null; then
-        stderr 'Setting the login shell to fish...'
-        local fish_path
-        fish_path=$(which fish)
-
-        if ! quietly grep "${fish_path}" /etc/shells; then
-            echo "${fish_path}" | sudo tee -a /etc/shells > /dev/null
-        fi
-
-        sudo chsh -s "${fish_path}" "$(whoami)"
-    fi
+    make_fish_login_shell
 
     stderr 'All done'
 
