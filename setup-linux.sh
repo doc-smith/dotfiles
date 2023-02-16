@@ -45,6 +45,7 @@ create_symlinks() {
 
     local xdg_conf_home
     xdg_conf_home="${HOME}/.config"
+    mkdir -p "${xdg_conf_home}"
 
     mkdir -p "${xdg_conf_home}/fish/themes"
     ln -sfv "${config_dir}/fish/config.fish" "${xdg_conf_home}/fish/config.fish"
@@ -58,6 +59,7 @@ create_symlinks() {
         ln -sf "${config_dir}/bat.conf" "${bat_config_path}"
     fi
 
+    mkdir -p "${xdg_conf_home}/git"
     ln -sf "${config_dir}/gitconfig" "${xdg_conf_home}/git/config"
     ln -sf "${config_dir}/tmux.conf" "${HOME}/.tmux.conf"
     ln -sf "${config_dir}/vimrc" "${HOME}/.vimrc"
