@@ -23,7 +23,9 @@ install_tools() {
     for package in "${PACKAGES[@]}"; do
         if ! dpkg -s "${package}" > /dev/null 2>&1; then
             stderr "installing ${package}..."
-            quietly sudo apt-get install -y "${package}"
+            quietly \
+                sudo DEBIAN_FRONTEND=noninteractive \
+                apt-get install --assume-yes "${package}"
         fi
     done
 }
