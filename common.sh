@@ -33,12 +33,15 @@ revoke_sudo() {
     sudo -k
 }
 
-make_fish_login_shell() {
+require_fish() {
     if ! quietly command -v fish &> /dev/null; then
         die 'Fish is not installed'
     fi
+}
 
-    stderr 'Setting the login shell to fish...'
+make_fish_login_shell() {
+    require_fish
+
     local fish_path
     fish_path=$(which fish)
 
@@ -47,4 +50,18 @@ make_fish_login_shell() {
     fi
 
     sudo chsh -s "${fish_path}" "$(whoami)"
+}
+
+install_fisher() {
+    require_fish
+
+    local fisher_path
+    fisher_path="${HOME}/.config/fish/functions/fisher.fish"
+
+    mkdir -p "$(dirname "${fisher_path}")"
+    if [ ! -f "${fisher_path}" ]; then
+        curl \
+            -sLo "${fisher_path}" \
+            --create-dirs https://git.io/fisher
+    fi
 }

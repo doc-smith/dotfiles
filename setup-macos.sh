@@ -50,6 +50,32 @@ EXTRA_HOME_CASKS=(
     telegram
 )
 
+create_symlinks() {
+    local config_dir
+    config_dir="${SCRIPT_DIR}/conf"
+
+    local xdg_conf_home
+    xdg_conf_home="${HOME}/.config"
+
+    mkdir -p "${xdg_conf_home}/wezterm"
+    ln -sf "${config_dir}/wezterm.lua" "${xdg_conf_home}/wezterm/wezterm.lua"
+
+    mkdir -p "${xdg_conf_home}/fish/themes"
+    ln -sfv "${config_dir}/fish/config.fish" "${xdg_conf_home}/fish/config.fish"
+    ln -sfv "${config_dir}/fish/fish_plugins" "${xdg_conf_home}/fish/fish_plugins"
+    ln -sfv "${config_dir}/fish/themes/termcolors.theme" "${xdg_conf_home}/fish/themes/termcolors.theme"
+
+    if quietly command -v bat &> /dev/null; then
+        local bat_config_path
+        bat_config_path=$(bat --config-file)
+        mkdir -p "$(dirname "${bat_config_path}")"
+        ln -sf "${config_dir}/bat.conf" "${bat_config_path}"
+    fi
+
+    ln -sf "${config_dir}/gitconfig" "${xdg_conf_home}/git/config"
+    ln -sf "${config_dir}/vimrc" "${HOME}/.vimrc"
+}
+
 
 main() {
     ask_sudo
@@ -70,7 +96,7 @@ main() {
             update_homebrew=false
         ;;
         *)
-            stderr "usage: $(basename $0) [--home-setup] [--no-brew-update]"
+            stderr "usage: $(basename "$0") [--home-setup] [--no-brew-update]"
             exit 2
         ;;
         esac
@@ -104,9 +130,10 @@ main() {
     done
 
     quietly brew completions link
-    make_fish_login_shell
 
-    stderr 'All done'
+    make_fish_login_shell
+    install_fisher
+    create_symlinks
 
     revoke_sudo
 }
