@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 stderr() {
     echo "$@" 1>&2;
 }
