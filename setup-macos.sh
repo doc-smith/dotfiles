@@ -19,6 +19,7 @@ FORMULAE=(
     bash
     bat
     cmake
+    doctl
     exa
     fish
     gh
@@ -43,6 +44,7 @@ CASKS=(
 # Applications I don't want to install on a company computer
 EXTRA_HOME_CASKS=(
     discord
+    docker
     signal
     steam
     telegram
