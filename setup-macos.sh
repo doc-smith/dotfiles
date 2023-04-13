@@ -27,6 +27,7 @@ FORMULAE=(
     httpie
     ipython
     llvm
+    neovim
     python3
     ripgrep
     shellcheck

@@ -14,6 +14,7 @@ PACKAGES=(
     fish
     htop
     httpie
+    neovim
     ripgrep
     shellcheck
     tldr
