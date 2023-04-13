@@ -10,7 +10,6 @@ source "${SCRIPT_DIR}/common.sh"
 
 
 PACKAGES=(
-    bat
     fish
     htop
     httpie
@@ -51,13 +50,6 @@ create_symlinks() {
     ln -sfv "${config_dir}/fish/config.fish" "${xdg_conf_home}/fish/config.fish"
     ln -sfv "${config_dir}/fish/fish_plugins" "${xdg_conf_home}/fish/fish_plugins"
     ln -sfv "${config_dir}/fish/themes/termcolors.theme" "${xdg_conf_home}/fish/themes/termcolors.theme"
-
-    if quietly command -v batcat &> /dev/null; then
-        local bat_config_path
-        bat_config_path=$(batcat --config-file)
-        mkdir -p "$(dirname "${bat_config_path}")"
-        ln -sf "${config_dir}/bat.conf" "${bat_config_path}"
-    fi
 
     mkdir -p "${xdg_conf_home}/git"
     ln -sf "${config_dir}/gitconfig" "${xdg_conf_home}/git/config"
