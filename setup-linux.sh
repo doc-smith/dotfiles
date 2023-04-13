@@ -19,7 +19,6 @@ PACKAGES=(
     shellcheck
     tldr
     tmux
-    vim
 )
 
 
