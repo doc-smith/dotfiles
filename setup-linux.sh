@@ -21,6 +21,12 @@ PACKAGES=(
 )
 
 
+require_debian() {
+    if [ ! -f /etc/debian_version ]; then
+        die "Sorry, your OS is not Debian-like"
+    fi
+}
+
 install_tools() {
     quietly sudo apt-get update
     for package in "${PACKAGES[@]}"; do
@@ -59,6 +65,8 @@ create_symlinks() {
 
 
 main() {
+    require_debian
+
     ask_sudo
 
     install_tools
