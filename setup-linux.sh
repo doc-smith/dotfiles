@@ -13,7 +13,6 @@ PACKAGES=(
     fish
     htop
     httpie
-    neovim
     ripgrep
     shellcheck
     tldr
@@ -38,7 +37,6 @@ install_tools() {
         fi
     done
 
-    make_fish_login_shell
     install_fisher
 
     tldr --update
@@ -53,14 +51,16 @@ create_symlinks() {
     mkdir -p "${xdg_conf_home}"
 
     mkdir -p "${xdg_conf_home}/fish/themes"
-    ln -sfv "${config_dir}/fish/config.fish" "${xdg_conf_home}/fish/config.fish"
-    ln -sfv "${config_dir}/fish/fish_plugins" "${xdg_conf_home}/fish/fish_plugins"
-    ln -sfv "${config_dir}/fish/themes/termcolors.theme" "${xdg_conf_home}/fish/themes/termcolors.theme"
+    ln -sf "${config_dir}/fish/config.fish" "${xdg_conf_home}/fish/config.fish"
+    ln -sf "${config_dir}/fish/fish_plugins" \
+           "${xdg_conf_home}/fish/fish_plugins"
+    ln -sf "${config_dir}/fish/themes/termcolors.theme" \
+            "${xdg_conf_home}/fish/themes/termcolors.theme"
 
-    mkdir -p "${xdg_conf_home}/git"
-    ln -sf "${config_dir}/gitconfig" "${xdg_conf_home}/git/config"
-    ln -sf "${config_dir}/tmux.conf" "${HOME}/.tmux.conf"
+    ln -sf "${config_dir}/gitconfig" "${xdg_conf_home}/.gitconfig"
     ln -sf "${config_dir}/vimrc" "${HOME}/.vimrc"
+
+    ln -sf "${config_dir}/tmux.conf" "${HOME}/.tmux.conf"
 }
 
 
@@ -70,6 +70,7 @@ main() {
     ask_sudo
 
     install_tools
+    make_fish_login_shell
     create_symlinks
 
     revoke_sudo

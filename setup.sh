@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-#
-# setup.sh - blah blah
-#
 
 set -euo pipefail
 

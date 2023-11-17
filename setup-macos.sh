@@ -3,9 +3,6 @@
 # install-sofware.sh - install my formulae and casks
 #
 # options:
-#   --home-setup        if this is being runned on my home machine
-#                       (EXTRA_HOME_CASKS will be also installed)
-#
 #   --no-brew-update    do not update Homebrew
 #
 
@@ -18,52 +15,77 @@ source "${SCRIPT_DIR}/common.sh"
 FORMULAE=(
     bash
     cmake
-    doctl
     exa
     fish
     gh
-    htop
+    golang
     httpie
     ipython
     llvm
-    neovim
+    node
+    npm
     python3
     ripgrep
     shellcheck
     tldr
-    tmux
 )
 
 CASKS=(
-    spotify
     visual-studio-code
-    wezterm
     zoom
 )
 
-# Applications I don't want to install on a company computer
-EXTRA_HOME_CASKS=(
-    discord
-    docker
-    signal
-    steam
-    telegram
-)
+
+require_macos() {
+    if [ "$(uname)" != "Darwin" ]; then
+        die "Sorry, your OS is not macOS"
+    fi
+}
+
+require_homebrew() {
+    if ! quietly command -v brew; then
+        die 'You need to install Homebrew first (https://brew.sh)'
+    fi
+}
+
+install_tools() {
+    stderr 'Getting your formulae ready...'
+    for formula in "${FORMULAE[@]}"; do
+        if ! brew ls --versions "${formula}" > /dev/null; then
+            stderr "${formula} is not installed, installing..."
+            quietly brew install "${formula}"
+        fi
+    done
+
+    for cask in "${CASKS[@]}"; do
+        if ! brew ls --cask --versions "${cask}" > /dev/null; then
+            stderr "${cask} is not installed, installing..."
+            quietly brew install --cask "${cask}"
+        fi
+    done
+
+    quietly brew completions link
+
+    install_fisher
+
+    tldr --update
+}
 
 create_symlinks() {
     local config_dir
     config_dir="${SCRIPT_DIR}/conf"
 
-    local xdg_conf_home
-    xdg_conf_home="${HOME}/.config"
+    local home_cofig_dir
+    home_cofig_dir="${HOME}/.config"
+    mkdir -p "${home_cofig_dir}"
 
-    mkdir -p "${xdg_conf_home}/wezterm"
-    ln -sf "${config_dir}/wezterm.lua" "${xdg_conf_home}/wezterm/wezterm.lua"
+    ln -sf "${config_dir}/fish/config.fish" "${home_cofig_dir}/fish/config.fish"
+    ln -sf "${config_dir}/fish/fish_plugins" \
+           "${home_cofig_dir}/fish/fish_plugins"
 
-    mkdir -p "${xdg_conf_home}/fish/themes"
-    ln -sf "${config_dir}/fish/config.fish" "${xdg_conf_home}/fish/config.fish"
-    ln -sf "${config_dir}/fish/fish_plugins" "${xdg_conf_home}/fish/fish_plugins"
-    ln -sf "${config_dir}/fish/themes/termcolors.theme" "${xdg_conf_home}/fish/themes/termcolors.theme"
+    mkdir -p "${home_cofig_dir}/fish/themes"
+    ln -sf "${config_dir}/fish/themes/termcolors.theme"\
+           "${home_cofig_dir}/fish/themes/termcolors.theme"
 
     ln -sf "${config_dir}/gitconfig" "${HOME}/.gitconfig"
     ln -sf "${config_dir}/vimrc" "${HOME}/.vimrc"
@@ -71,19 +93,13 @@ create_symlinks() {
 
 
 main() {
-    ask_sudo
     require_macos
     require_homebrew
 
-    local home_setup=false
     local update_homebrew=true
 
     while (( $# > 0 )); do
         case $1 in
-        --home-setup)
-            shift
-            home_setup=true
-        ;;
         --no-brew-update)
             shift
             update_homebrew=false
@@ -95,37 +111,15 @@ main() {
         esac
     done
 
+    ask_sudo
 
     if [ "${update_homebrew}" == true ]; then
         stderr 'Updating Homebrew...'
         quietly brew update
     fi
 
-    stderr 'Getting your formulae ready...'
-    for formula in "${FORMULAE[@]}"; do
-        if ! brew ls --versions "${formula}" > /dev/null; then
-            stderr "${formula} is not installed, installing..."
-            quietly brew install "${formula}"
-        fi
-    done
-
-    stderr 'Getting your casks ready...'
-    local casks_to_install=("${CASKS[@]}")
-    if [ "${home_setup}" == true ]; then
-        casks_to_install+=("${EXTRA_HOME_CASKS[@]}")
-    fi
-
-    for cask in "${casks_to_install[@]}"; do
-        if ! brew ls --cask --versions "${cask}" > /dev/null; then
-            stderr "${cask} is not installed, installing..."
-            quietly brew install --cask "${cask}"
-        fi
-    done
-
-    quietly brew completions link
-
+    install_tools
     make_fish_login_shell
-    install_fisher
     create_symlinks
 
     revoke_sudo

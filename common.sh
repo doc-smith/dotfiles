@@ -13,18 +13,6 @@ quietly() {
     "$@" > /dev/null
 }
 
-require_macos() {
-    if [ "$(uname)" != "Darwin" ]; then
-        die "Sorry, your OS is not macOS"
-    fi
-}
-
-require_homebrew() {
-    if ! quietly command -v brew; then
-        die 'You need to install Homebrew first (https://brew.sh)'
-    fi
-}
-
 ask_sudo() {
     if ! sudo -v; then
         die 'You need sudo to run this script'
