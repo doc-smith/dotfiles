@@ -2,32 +2,22 @@
 
 ### Basic Setup
 
-First, install Xcode command line tools (`xcode-select --install`),
-[Google Chrome](https://www.google.com/chrome) and [Homebrew](https://docs.brew.sh/Installation):
+First, install Xcode command line tools (`xcode-select --install`).
+
+The next step is to install:
+
+* [Google Chrome](https://www.google.com/chrome)
+* [Visual Studio Code](https://code.visualstudio.com)
+* [Homebrew](https://docs.brew.sh/Installation)
+
+First, install the GitHub CLI. Then, log in to your GitHub account. Finally, clone this repository.
 
 ```
-$ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+$ /opt/homebrew/bin/brew install gh
+$ /opt/homebrew/bin/gh auth login
+$ /opt/homebrew/bin/gh repo clone doc-smith/dotfiles ~/GitHub/dotfiles
 ```
 
-Install [JetBrains Mono font](https://www.jetbrains.com/lp/mono/) to use with
-Visual Studio Code. That's pretty much it, the rest is automated with
-`setup-macos.sh`. Clone this repository and run
-[setup-macos.sh](setup-macos.sh):
-
-```
-$ mkdir ~/GitHub
-$ git clone git@github.com:doc-smith/dotfiles.git ~/GitHub/dotfiles
-$ ~/GitHub/dotfiles/setup-macos.sh # --home-setup
-```
-
-
-### Visual Studio Code
-
-Install [Visual Studio Code](https://code.visualstudio.com).
-
-Turn on settings sync (Code -> Preferences -> Turn on Settings Sync...) and
-sign in with the GitHub account.
-
-## Terminal
-
-[Terminal profile](conf/my-profile.terminal) is stored in the repository.
+The Terminal profile is saved in the file [conf/my-profile.terminal](conf/my-profile.terminal).
+In the Terminal app, just go to Terminal -> Settings -> Profiles, import the profile from this
+file, and set it as the default.
