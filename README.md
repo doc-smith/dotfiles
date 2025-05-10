@@ -3,17 +3,10 @@
 ### Basic Setup
 
 First, install Xcode command line tools (`xcode-select --install`),
-[Safari Technology Preview](https://developer.apple.com/safari/resources/)
-and [Homebrew](https://docs.brew.sh/Installation):
+[Google Chrome](https://www.google.com/chrome) and [Homebrew](https://docs.brew.sh/Installation):
 
 ```
 $ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-```
-
-The next step is to install [rustup](https://rustup.rs):
-
-```
-$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 Install [JetBrains Mono font](https://www.jetbrains.com/lp/mono/) to use with
