@@ -10,7 +10,10 @@ The next step is to install:
 * [Visual Studio Code](https://code.visualstudio.com)
 * [Homebrew](https://docs.brew.sh/Installation)
 
-First, install the GitHub CLI. Then, log in to your GitHub account. Finally, clone this repository.
+Generate [a new SSH key pair](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+on your new machine and [add the public key to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
+Then, install the GitHub CLI. Then, log in to your GitHub account. Finally, clone this repository.
 
 ```
 $ /opt/homebrew/bin/brew install gh
