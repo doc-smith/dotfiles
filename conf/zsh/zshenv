@@ -1,0 +1,7 @@
+# Editors
+export EDITOR=vim
+export VISUAL=vim
+
+# Enable colorized `ls` output
+# This is equivalent to the `-G` flag.
+export CLICOLOR=1

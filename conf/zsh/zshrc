@@ -1,0 +1,59 @@
+# My goal for this Zsh setup is to keep it minimalistic and close to the default
+# configuration. While it uses a few dependencies, such as fzf and Fish-like
+# auto-suggestions, it's written to start without errors even if the
+# dependencies are missing.
+
+
+# Homebrew and dependencies installed with it
+HOMEBREW_PREFIX=/opt/homebrew
+if [[ -x ${HOMEBREW_PREFIX}/bin/brew ]]; then
+
+    # Homebrew
+    eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
+
+    # Auto-suggestions in Zsh, like in Fish
+    suggestions_file=${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    if [[ -f ${suggestions_file} ]]; then
+        source "${suggestions_file}"
+    fi
+
+fi
+
+
+# History
+setopt EXTENDED_HISTORY
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+# We'll define the shell history variables here instead of .zshrc, because they
+# are only required for interactive mode.
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=$HOME/.zsh_history
+
+
+# fzf
+if command -v fzf &>/dev/null; then
+    source <(fzf --zsh)
+fi
+
+
+# Prompt
+
+# This is my ultimate minimalist prompt, which consists of two parts. The first
+# part checks the exist code of the last command executed. If the code is zero,
+# it displays a green checkmark. Otherwise, it shows a non-zero exit code in
+# red.
+return_code='%(?.%F{green}√.%F{red}%?)%f'
+
+# The second part is simply the current directory, shown in bold and blue.
+current_dir='%B%F{blue}%~%f%b'
+
+# $PROMPT is the equivalent if $PS1
+PROMPT="${return_code} ${current_dir} %# "
+
+
+# Completion
+autoload -Uz compinit
+compinit
