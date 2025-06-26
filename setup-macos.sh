@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck source=common.sh
 #
 # install-sofware.sh - install my formulae and casks
 #
@@ -23,8 +24,8 @@ FORMULAE=(
     ripgrep
     shellcheck
     tlrc
+    z
     zsh-autosuggestions
-    zsh-syntax-highlighting
 )
 
 CASKS=(

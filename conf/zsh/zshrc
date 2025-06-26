@@ -17,6 +17,7 @@ if [[ -x ${HOMEBREW_PREFIX}/bin/brew ]]; then
         source "${suggestions_file}"
     fi
 
+    . ${HOMEBREW_PREFIX}/etc/profile.d/z.sh
 fi
 
 
