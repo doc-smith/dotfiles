@@ -43,9 +43,9 @@ fi
 
 # This is my ultimate minimalist prompt, which consists of two parts. The first
 # part checks the exist code of the last command executed. If the code is zero,
-# it displays a green checkmark. Otherwise, it shows a non-zero exit code in
-# red.
-return_code='%(?.%F{green}√.%F{red}%?)%f'
+# it displays nothing. Otherwise, it shows a non-zero exit code in red and in
+# parentheses.
+return_code='%(?..%F{red}(%?%)%f)'
 
 # The second part is simply the current directory, shown in bold and blue.
 current_dir='%B%F{blue}%~%f%b'
