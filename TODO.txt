@@ -1,0 +1,9 @@
+* fzf everywhere
+    - z and fzf
+* consistent colors
+    - vim
+* tmux
+    * colors
+* man colors
+* asdf
+    * asdf completions

@@ -2,6 +2,16 @@
 export EDITOR=vim
 export VISUAL=vim
 
-# Enable colorized `ls` output
+# Enable colorized `ls` output.
 # This is equivalent to the `-G` flag.
 export CLICOLOR=1
+
+# Add smlnj to path if it's installed.
+if [[ -d /usr/local/smlnj/bin ]]; then
+    path+=(
+        /usr/local/smlnj/bin
+    )
+fi
+
+# Prepend asdf shims to path for version management.
+path=(${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)

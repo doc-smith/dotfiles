@@ -37,6 +37,12 @@ export HISTFILE=$HOME/.zsh_history
 # fzf
 if command -v fzf &>/dev/null; then
     source <(fzf --zsh)
+
+    # Tell fzf to use 16 ANSI colors.
+    export FZF_DEFAULT_OPTS="
+        --ansi \
+        --color=16 \
+    "
 fi
 
 

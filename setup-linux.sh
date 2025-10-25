@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck source=common.sh
 #
 # install-linux.sh - blah blah
 #

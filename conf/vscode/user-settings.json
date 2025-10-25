@@ -1,0 +1,9 @@
+{
+    "editor.rulers": [
+        80
+    ],
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Menlo, 'Courier New', monospace",
+
+    "geminicodeassist.inlineSuggestions.enableAuto": false
+}
