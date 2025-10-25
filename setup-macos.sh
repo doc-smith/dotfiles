@@ -16,7 +16,6 @@ source "${SCRIPT_DIR}/common.sh"
 BREW=/opt/homebrew/bin/brew
 
 FORMULAE=(
-    asdf
     bash
     fzf
     golang
@@ -29,7 +28,6 @@ FORMULAE=(
 )
 
 CASKS=(
-    font-computer-modern
     google-chrome
     localsend
     visual-studio-code
@@ -87,22 +85,6 @@ create_symlinks() {
 }
 
 
-setup_asdf() {
-    asdf=/opt/homebrew/bin/asdf
-    if ! "${asdf}" version; then
-        stderr "asdf is not installed, skipping asdf setup"
-        return
-    fi
-
-    if ! "${asdf}" list nodejs >/dev/null; then
-        stderr "Installing NodeJS latest..."
-        quietly "${asdf}" plugin add nodejs \
-            https://github.com/asdf-vm/asdf-nodejs.git
-        quietly "${asdf}" install nodejs latest
-    fi
-}
-
-
 main() {
     require_macos
     require_homebrew
@@ -131,8 +113,6 @@ main() {
 
     install_tools
     create_symlinks
-
-    setup_asdf
 
     # Bash and Zsh will suppress the welcome banner upon startup if this file
     # exists.

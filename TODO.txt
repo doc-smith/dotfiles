@@ -5,5 +5,3 @@
 * tmux
     * colors
 * man colors
-* asdf
-    * asdf completions
