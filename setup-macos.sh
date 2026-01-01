@@ -13,11 +13,11 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 source "${SCRIPT_DIR}/common.sh"
 
 
-BREW=/opt/homebrew/bin/brew
+# will be initialized in require_homebrew
+BREW=""
 
 FORMULAE=(
     bash
-    codex
     fzf
     golang
     python3
@@ -30,6 +30,8 @@ FORMULAE=(
 )
 
 CASKS=(
+    chatgpt
+    codex
     visual-studio-code
 )
 
@@ -41,7 +43,16 @@ require_macos() {
 }
 
 require_homebrew() {
-    if ! quietly command -v "${BREW}"; then
+    BREW=$(command -v brew || true)
+    if [[ -z "${BREW}" ]]; then
+        if [[ -x /opt/homebrew/bin/brew ]]; then
+            BREW=/opt/homebrew/bin/brew
+        elif [[ -x /usr/local/bin/brew ]]; then
+            BREW=/usr/local/bin/brew
+        fi
+    fi
+
+    if [[ -z "${BREW}" ]]; then
         die 'You need to install Homebrew first (https://brew.sh)'
     fi
 }
@@ -65,7 +76,9 @@ install_tools() {
     quietly "${BREW}" completions link
 
     stderr "Updating tldr page definitions..."
-    /opt/homebrew/bin/tldr --update
+    if command -v tldr &>/dev/null; then
+        tldr --update
+    fi
 }
 
 create_symlinks() {

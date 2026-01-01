@@ -7,11 +7,9 @@ export VISUAL=vim
 export CLICOLOR=1
 
 # Add smlnj to path if it's installed.
+# smlnj is Standard ML of New Jersey.
 if [[ -d /usr/local/smlnj/bin ]]; then
     path+=(
         /usr/local/smlnj/bin
     )
-fi
-
-# Prepend asdf shims to path for version management.
-path=(${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)
+fi  

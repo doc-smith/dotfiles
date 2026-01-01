@@ -10,10 +10,8 @@ source "${SCRIPT_DIR}/common.sh"
 main() {
     if [ "$(uname)" == 'Darwin' ]; then
         "${SCRIPT_DIR}/setup-macos.sh"
-    elif [ "$(uname)" == 'Linux' ]; then
-        "${SCRIPT_DIR}/setup-linux.sh"
     else
-        die 'Sorry, your OS is not supported (uname must be Darwin or Linux)'
+        die 'Sorry, your OS is not supported (uname must be Darwin)'
     fi
 }
 
