@@ -21,6 +21,10 @@ if [[ -x ${HOMEBREW_PREFIX}/bin/brew ]]; then
 fi
 
 
+# Use emacs mode
+bindkey -e
+
+
 # History
 setopt EXTENDED_HISTORY
 setopt HIST_VERIFY

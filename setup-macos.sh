@@ -17,19 +17,19 @@ BREW=/opt/homebrew/bin/brew
 
 FORMULAE=(
     bash
+    codex
     fzf
     golang
     python3
     ripgrep
     shellcheck
     tlrc
+    tmux
     z
     zsh-autosuggestions
 )
 
 CASKS=(
-    google-chrome
-    localsend
     visual-studio-code
 )
 
