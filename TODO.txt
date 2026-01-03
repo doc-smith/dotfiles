@@ -1,5 +1,3 @@
-* fzf everywhere
-    - z and fzf
 * consistent colors
     - vim
 * tmux
