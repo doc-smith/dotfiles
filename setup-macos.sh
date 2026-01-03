@@ -25,7 +25,6 @@ FORMULAE=(
     shellcheck
     tlrc
     tmux
-    z
     zsh-autosuggestions
 )
 
