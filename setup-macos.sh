@@ -21,6 +21,7 @@ FORMULAE=(
     bash-completion
     fzf
     golang
+    neovim
     python3
     ripgrep
     shellcheck
