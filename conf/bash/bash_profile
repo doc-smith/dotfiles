@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Load general environment first, then Bash-specific interactive config.
+if [[ -f "${HOME}/.profile" ]]; then
+    source "${HOME}/.profile"
+fi
+
+if [[ -f "${HOME}/.bashrc" ]]; then
+    source "${HOME}/.bashrc"
+fi

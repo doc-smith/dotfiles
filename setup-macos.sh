@@ -18,6 +18,7 @@ BREW=""
 
 FORMULAE=(
     bash
+    bash-completion
     fzf
     golang
     python3
@@ -86,6 +87,9 @@ create_symlinks() {
 
     ln -sf "${config_dir}/zsh/zshrc" "${HOME}/.zshrc"
     ln -sf "${config_dir}/zsh/zshenv" "${HOME}/.zshenv"
+    ln -sf "${config_dir}/bash/bashrc" "${HOME}/.bashrc"
+    ln -sf "${config_dir}/bash/bash_profile" "${HOME}/.bash_profile"
+    ln -sf "${config_dir}/bash/profile" "${HOME}/.profile"
 
     ln -sf "${config_dir}/gitconfig" "${HOME}/.gitconfig"
     ln -sf "${config_dir}/vimrc" "${HOME}/.vimrc"

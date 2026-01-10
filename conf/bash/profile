@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Add smlnj to path if it's installed.
+# smlnj is Standard ML of New Jersey.
+if [[ -d /usr/local/smlnj/bin ]]; then
+    case ":${PATH}:" in
+    *:/usr/local/smlnj/bin:*)
+        ;;
+    *)
+        export PATH="/usr/local/smlnj/bin:${PATH}"
+        ;;
+    esac
+fi

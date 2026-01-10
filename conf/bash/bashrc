@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# My goal for this Bash setup is to keep it minimalistic and close to the
+# default configuration. While it uses a few dependencies, such as fzf, it's
+# written to start without errors even if the dependencies are missing.
+
+# Homebrew and dependencies installed with it
+if command -v brew &>/dev/null; then
+    HOMEBREW_PREFIX=$(brew --prefix)
+
+    # Homebrew
+    eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
+
+    # Bash completion (if installed).
+    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    fi
+
+    # z.sh (jump around)
+    if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/z.sh" ]]; then
+        source "${HOMEBREW_PREFIX}/etc/profile.d/z.sh"
+    fi
+elif [[ -r /etc/bash_completion ]]; then
+    source /etc/bash_completion
+fi
+
+# Use emacs mode
+set -o emacs
+
+export EDITOR=vim
+export VISUAL=vim
+
+# History
+shopt -s histappend
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTFILE="${HOME}/.bash_history"
+
+# fzf
+if command -v fzf &>/dev/null; then
+    source <(fzf --bash)
+
+    # Tell fzf to use 16 ANSI colors.
+    export FZF_DEFAULT_OPTS="
+        --ansi \
+        --color=16 \
+    "
+fi
+
+__bash_prompt_command() {
+    local last_status=$?
+
+    # Keep history in sync across sessions.
+    history -a
+    history -n
+
+    local return_code=""
+    if (( last_status != 0 )); then
+        return_code="\[\e[31m\](${last_status})\[\e[0m\] "
+    fi
+
+    # Bold blue current directory + user prompt.
+    PS1="${return_code}\[\e[1m\]\[\e[34m\]\w\[\e[0m\] \$ "
+}
+
+if [[ -n "${PROMPT_COMMAND:-}" ]]; then
+    PROMPT_COMMAND="__bash_prompt_command; ${PROMPT_COMMAND}"
+else
+    PROMPT_COMMAND="__bash_prompt_command"
+fi
