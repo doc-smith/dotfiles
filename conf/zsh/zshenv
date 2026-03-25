@@ -13,3 +13,6 @@ if [[ -d /usr/local/smlnj/bin ]]; then
         /usr/local/smlnj/bin
     )
 fi  
+
+export PATH="$HOME/.local/bin:$PATH"
+
