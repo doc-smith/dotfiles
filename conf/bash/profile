@@ -11,3 +11,5 @@ if [[ -d /usr/local/smlnj/bin ]]; then
         ;;
     esac
 fi
+
+[ -f "/Users/dmitry/.ghcup/env" ] && . "/Users/dmitry/.ghcup/env" # ghcup-env
