@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck source=common.sh
 #
-# install-sofware.sh - install my formulae and casks
+# setup-macos.sh - install my formulae and casks
 #
 # options:
 #   --no-brew-update    do not update Homebrew
@@ -19,20 +19,22 @@ BREW=""
 FORMULAE=(
     bash
     bash-completion
+    elan-init
     fzf
+    ghcup
     golang
     neovim
     python3
     ripgrep
     shellcheck
+    smlnj
     tlrc
     tmux
     zsh-autosuggestions
 )
 
 CASKS=(
-    chatgpt
-    codex
+    google-chrome
     visual-studio-code
 )
 
@@ -93,9 +95,11 @@ create_symlinks() {
     ln -sf "${config_dir}/bash/profile" "${HOME}/.profile"
 
     ln -sf "${config_dir}/gitconfig" "${HOME}/.gitconfig"
+    ln -sf "${config_dir}/tmux.conf" "${HOME}/.tmux.conf"
     ln -sf "${config_dir}/vimrc" "${HOME}/.vimrc"
 
     # link vscode user settings
+    mkdir -p "${HOME}/Library/Application Support/Code/User"
     ln -sf \
         "${config_dir}/vscode/user-settings.json" \
         "${HOME}/Library/Application Support/Code/User/settings.json"
@@ -115,13 +119,11 @@ main() {
             update_homebrew=false
         ;;
         *)
-            stderr "usage: $(basename "$0") [--home-setup] [--no-brew-update]"
+            stderr "usage: $(basename "$0") [--no-brew-update]"
             exit 2
         ;;
         esac
     done
-
-    ask_sudo
 
     if [ "${update_homebrew}" == true ]; then
         stderr 'Updating Homebrew...'
@@ -134,8 +136,6 @@ main() {
     # Bash and Zsh will suppress the welcome banner upon startup if this file
     # exists.
     touch "${HOME}/.hushlogin"
-
-    revoke_sudo
 }
 
 

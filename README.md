@@ -7,8 +7,8 @@ This repo bootstraps my macOS development setup by installing Homebrew formulae/
 Homebrew formulae and casks are defined in `setup-macos.sh`. Current highlights:
 
 - Shell + CLI: bash, zsh, fzf, ripgrep, shellcheck, tlrc, tmux
-- Languages: golang, python3
-- Apps: ChatGPT, Codex, Visual Studio Code
+- Languages: golang, python3, elan, ghcup, smlnj
+- Apps: Google Chrome, Visual Studio Code
 
 ## Quick start (new Mac)
 
@@ -43,7 +43,11 @@ Symlinks created in `$HOME`:
 
 - `~/.zshrc` -> `conf/zsh/zshrc`
 - `~/.zshenv` -> `conf/zsh/zshenv`
+- `~/.bashrc` -> `conf/bash/bashrc`
+- `~/.bash_profile` -> `conf/bash/bash_profile`
+- `~/.profile` -> `conf/bash/profile`
 - `~/.gitconfig` -> `conf/gitconfig`
+- `~/.tmux.conf` -> `conf/tmux.conf`
 - `~/.vimrc` -> `conf/vimrc`
 - VS Code settings -> `conf/vscode/user-settings.json`
 

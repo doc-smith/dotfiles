@@ -27,9 +27,6 @@ fi
 # Use emacs mode
 set -o emacs
 
-export EDITOR=vim
-export VISUAL=vim
-
 # History
 shopt -s histappend
 export HISTSIZE=10000

@@ -69,4 +69,4 @@ PROMPT="${return_code} ${current_dir} %# "
 autoload -Uz compinit
 compinit
 
-[ -f "/Users/dmitry/.ghcup/env" ] && . "/Users/dmitry/.ghcup/env" # ghcup-env
+[ -f "${HOME}/.ghcup/env" ] && . "${HOME}/.ghcup/env"

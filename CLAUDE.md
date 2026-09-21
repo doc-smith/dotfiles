@@ -36,6 +36,7 @@ Symlink targets created by `create_symlinks()`:
 | `~/.bash_profile` | `conf/bash/bash_profile` |
 | `~/.profile` | `conf/bash/profile` |
 | `~/.gitconfig` | `conf/gitconfig` |
+| `~/.tmux.conf` | `conf/tmux.conf` |
 | `~/.vimrc` | `conf/vimrc` |
 | VS Code `settings.json` | `conf/vscode/user-settings.json` |
 

@@ -6,13 +6,22 @@ export VISUAL=vim
 # This is equivalent to the `-G` flag.
 export CLICOLOR=1
 
-# Add smlnj to path if it's installed.
-# smlnj is Standard ML of New Jersey.
-if [[ -d /usr/local/smlnj/bin ]]; then
-    path+=(
-        /usr/local/smlnj/bin
-    )
-fi  
+# Ensure path entries are unique
+typeset -U path
 
-export PATH="$HOME/.local/bin:$PATH"
+# Prepend local binaries
+path=(
+    "$HOME/.local/bin"
+    $path
+)
 
+# Append optional directories if they exist
+for dir in \
+    "$HOME/.elan/bin" \
+    /usr/local/smlnj/bin \
+    "$HOME/.antigravity-ide/antigravity-ide/bin"
+do
+    if [[ -d "$dir" ]]; then
+        path+=("$dir")
+    fi
+done
